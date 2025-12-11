@@ -1,0 +1,17 @@
+# Description: Overrides the postgres db user/pass
+
+services:
+  musicbrainz:
+    environment:
+      POSTGRES_USER: "abc" #  Required for lidarr
+      POSTGRES_PASSWORD: "abc" # Required for lidarr
+      MUSICBRAINZ_WEB_SERVER_HOST: "10.0.1.102"
+  db:
+    environment:
+      POSTGRES_USER: "abc" # Required for lidarr
+      POSTGRES_PASSWORD: "abc" # Required for lidarr
+
+  indexer:
+    environment:
+      POSTGRES_USER: "abc" # Required for lidarr
+      POSTGRES_PASSWORD: "abc" # Required for lidarr
