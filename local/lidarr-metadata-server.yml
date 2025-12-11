@@ -14,6 +14,7 @@ volumes:
 services:
   lmd:
     image: blampe/lidarr.metadata:70a9707
+    container_name: lidarr-metadata-server
     environment:
       DEBUG: false
       PRODUCTION: false
