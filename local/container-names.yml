@@ -1,0 +1,12 @@
+services:
+  db:
+    container_name: musicbrainz-db
+  indexer:
+    container_name: musicbrainz-indexer
+  mq:
+    container_name: musicbrainz-mq
+  musicbrainz:
+    container_name: musicbrainz
+  redis:
+    container_name: musicbrainz-redis
+
