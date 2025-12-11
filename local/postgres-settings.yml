@@ -5,7 +5,7 @@ services:
     environment:
       POSTGRES_USER: "abc" #  Required for lidarr
       POSTGRES_PASSWORD: "abc" # Required for lidarr
-      MUSICBRAINZ_WEB_SERVER_HOST: "10.0.1.102"
+      MUSICBRAINZ_WEB_SERVER_HOST: "musicbrainz.ferngarden.net"
   db:
     environment:
       POSTGRES_USER: "abc" # Required for lidarr
