@@ -1,4 +1,7 @@
 # Description: Lidarr Metadata Server config
+networks:
+  media:
+    external: true
 
 volumes:
   lmdconfig:
@@ -11,8 +14,6 @@ volumes:
 services:
   lmd:
     image: blampe/lidarr.metadata:70a9707
-    # ports:
-    #   - 5001:5001
     environment:
       DEBUG: false
       PRODUCTION: false
@@ -42,6 +43,9 @@ services:
     restart: unless-stopped
     volumes:
       - lmdconfig:/config
+    networks:
+      - default
+      - media
     depends_on:
       - db
       - mq
