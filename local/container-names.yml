@@ -9,4 +9,6 @@ services:
     container_name: musicbrainz
   redis:
     container_name: musicbrainz-redis
+  search:
+    container_name: musicbrainz-search
 
