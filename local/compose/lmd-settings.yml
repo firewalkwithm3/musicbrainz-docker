@@ -36,6 +36,9 @@ services:
       LASTFM_SECRET: ${MUSICBRAINZ_LASTFM_SECRET} # Replace with your own key
       PROVIDERS__SOLRSEARCHPROVIDER__1__SEARCH_SERVER: "http://search:8983/solr"
     restart: unless-stopped
+    networks:
+      - default
+      - media
     volumes:
       - lmdconfig:/config
     depends_on:
