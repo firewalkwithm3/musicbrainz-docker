@@ -1,16 +1,6 @@
-## Add your compose file here
 services:
-  hello_world:
-    image: hello-world
-    # networks:
-    #   - default
-    # ports:
-    #   - 3000:3000
-    # volumes:
-    #   - data:/data
-
-# networks:
-#   default: {}
-
-# volumes:
-#   data:
+  db:
+    command: postgres -c "shared_buffers=2GB" -c "shared_preload_libraries=pg_amqp.so"
+  search:
+    environment:
+      - SOLR_HEAP=2g
