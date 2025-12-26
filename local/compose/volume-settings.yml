@@ -1,16 +1,26 @@
-## Add your compose file here
-services:
-  hello_world:
-    image: hello-world
-    # networks:
-    #   - default
-    # ports:
-    #   - 3000:3000
-    # volumes:
-    #   - data:/data
-
-# networks:
-#   default: {}
-
-# volumes:
-#   data:
+volumes:
+  mqdata:
+    driver_opts:
+      type: none
+      device: /home/fern/docker/data/musicbrainz/mqdata
+      o: bind
+  pgdata:
+    driver_opts:
+      type: none
+      device: /home/fern/docker/data/musicbrainz/pgdata
+      o: bind
+  solrdata:
+    driver_opts:
+      type: none
+      device: /home/fern/docker/data/musicbrainz/solrdata
+      o: bind
+  dbdump:
+    driver_opts:
+      type: none
+      device: /home/fern/docker/data/musicbrainz/dbdump
+      o: bind
+  solrdump:
+    driver_opts:
+      type: none
+      device: /home/fern/docker/data/musicbrainz/solrdump
+      o: bind
