@@ -6,6 +6,10 @@ volumes:
       o: bind
     driver: local
 
+networks:
+  media:
+    external: true
+
 services:
   lmd:
     image: blampe/lidarr.metadata:70a9707
