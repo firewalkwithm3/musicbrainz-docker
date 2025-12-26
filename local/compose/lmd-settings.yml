@@ -1,16 +1,45 @@
-## Add your compose file here
+volumes:
+  lmdconfig:
+    driver_opts:
+      type: none
+      device: /home/fern/docker/data/musicbrainz/lmdconfig
+      o: bind
+    driver: local
+
 services:
-  hello_world:
-    image: hello-world
-    # networks:
-    #   - default
-    # ports:
-    #   - 3000:3000
-    # volumes:
-    #   - data:/data
-
-# networks:
-#   default: {}
-
-# volumes:
-#   data:
+  lmd:
+    image: blampe/lidarr.metadata:70a9707
+    environment:
+      DEBUG: false
+      PRODUCTION: false
+      USE_CACHE: true
+      ENABLE_STATS: false
+      ROOT_PATH: ""
+      IMAGE_CACHE_HOST: "theaudiodb.com"
+      EXTERNAL_TIMEOUT: 1000
+      INVALIDATE_APIKEY: ""
+      REDIS_HOST: "redis"
+      REDIS_PORT: 6379
+      FANART_KEY: ${MUSICBRAINZ_FANART_KEY}        # Replace with your own key
+      PROVIDERS__FANARTTVPROVIDER__0__0: ${MUSICBRAINZ_FANART_KEY}  # Replace with your own key
+      SPOTIFY_ID: ${MUSICBRAINZ_SPOTIFY_ID}            # Replace with your own key
+      SPOTIFY_SECRET: ${MUSICBRAINZ_SPOTIFY_SECRET}        # Replace with your own key
+      SPOTIFY_REDIRECT_URL: "https://lmd.ferngarden.net"   # set your host_ip
+      PROVIDERS__SPOTIFYPROVIDER__1__CLIENT_ID: ${MUSICBRAINZ_SPOTIFY_ID}    # Replace with your own key
+      PROVIDERS__SPOTIFYPROVIDER__1__CLIENT_SECRET: ${MUSICBRAINZ_SPOTIFY_SECRET} # Replace with your own key
+      PROVIDERS__SPOTIFYAUTHPROVIDER__1__CLIENT_ID: ${MUSICBRAINZ_SPOTIFY_ID} # Replace with your own key
+      PROVIDERS__SPOTIFYAUTHPROVIDER__1__CLIENT_SECRET: ${MUSICBRAINZ_SPOTIFY_SECRET} # Replace with your own key
+      PROVIDERS__SPOTIFYAUTHPROVIDER__1__REDIRECT_URI: "https://lmd.ferngarden.net"   # set your host_ip
+      TADB_KEY: "2"    # Default, may need your own key for full functionality
+      PROVIDERS__THEAUDIODBPROVIDER__0__0: "2"    # Default, may need your own key for full functionality
+      LASTFM_KEY: ${MUSICBRAINZ_LASTFM_KEY}   # Replace with your own key
+      LASTFM_SECRET: ${MUSICBRAINZ_LASTFM_SECRET} # Replace with your own key
+      PROVIDERS__SOLRSEARCHPROVIDER__1__SEARCH_SERVER: "http://search:8983/solr"
+    restart: unless-stopped
+    volumes:
+      - lmdconfig:/config
+    depends_on:
+      - db
+      - mq
+      - search
+      - redis
