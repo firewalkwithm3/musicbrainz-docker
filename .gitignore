@@ -12,7 +12,7 @@
 /admin/.setup-amqp-triggers-sql/
 
 # Directory designated to store local compose overrides and related files
-/local/
+# /local/
 
 # Installed node module 'markdown-toc' used to generate TOC in README.md
 /node_modules/
