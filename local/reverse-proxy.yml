@@ -1,16 +1,6 @@
-## Add your compose file here
 services:
-  hello_world:
-    image: hello-world
-    # networks:
-    #   - default
-    # ports:
-    #   - 3000:3000
-    # volumes:
-    #   - data:/data
-
-# networks:
-#   default: {}
-
-# volumes:
-#   data:
+  musicbrainz:
+    labels:
+      caddy: musicbrainz.ferngarden.net
+      caddy.import: internal
+      caddy.reverse_proxy: musicbrainz:5000
