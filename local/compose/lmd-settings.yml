@@ -39,6 +39,7 @@ services:
       LASTFM_KEY: ${MUSICBRAINZ_LASTFM_KEY}   # Replace with your own key
       LASTFM_SECRET: ${MUSICBRAINZ_LASTFM_SECRET} # Replace with your own key
       PROVIDERS__SOLRSEARCHPROVIDER__1__SEARCH_SERVER: "http://search:8983/solr"
+      POSTGRES_CACHE_HOST: musicbrainz-db
     restart: unless-stopped
     networks:
       - default
