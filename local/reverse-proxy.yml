@@ -1,6 +1,14 @@
 services:
   musicbrainz:
+    networks:
+      - default
+      - proxy
     labels:
       caddy: musicbrainz.ferngarden.net
       caddy.import: internal
       caddy.reverse_proxy: musicbrainz:5000
+
+networks:
+  default:
+  proxy:
+    external: true
